@@ -10,7 +10,8 @@
 
 ### Prerequisites
 
-Setup an account with [Linode](https://linode.com)
-Understanding of Terraform
+- Setup an account with [Linode](https://linode.com)
+- Understanding of Terraform
+- Purchasing a domain through a Domain Registrar (i.e. - GoDaddy)
 
 ## Blogging platform!

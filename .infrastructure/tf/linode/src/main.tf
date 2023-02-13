@@ -22,3 +22,7 @@ terraform {
 provider "linode" {
   token = var.pat_token
 }
+
+locals {
+  personal_email = "williamdzink@gmail.com"
+}
