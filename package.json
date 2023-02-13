@@ -11,6 +11,7 @@
     "publish:infrastructure:init": "terraform -chdir=.infrastructure/tf/linode/src init",
     "publish:infrastructure:plan": "terraform -chdir=.infrastructure/tf/linode/src plan -var-file=config/.linode/pat.credentials -var-file=config/pd.tfvars -out=tfplan",
     "publish:infrastructure:apply": "terraform -chdir=.infrastructure/tf/linode/src apply --auto-approve tfplan",
+    "publish:infrastructure:k8s-login": ". ./.infrastructure/tf/linode/scripts/shell/kubectl-login.sh $(terraform -chdir=.infrastructure/tf/linode/src output -raw k8s_kubeconfig)",
     "remove:infrastructure": "npm-run-all remove:infrastructure:*",
     "remove:infrastructure:init": "terraform -chdir=.infrastructure/tf/linode/src init",
     "remove:infrastructure:destroy": "terraform -chdir=.infrastructure/tf/linode/src destroy -var-file=config/.linode/pat.credentials -var-file=config/pd.tfvars",
