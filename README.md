@@ -14,4 +14,4 @@
 - Understanding of Terraform
 - Purchasing a domain through a Domain Registrar (i.e. - GoDaddy)
 
-## Blogging platform!
+## Blogging platform

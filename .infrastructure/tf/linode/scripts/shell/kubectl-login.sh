@@ -2,6 +2,8 @@
 
 echo $1 | base64 --decode > ~/.kube/linode_config
 
-export KUBECONFIG=~/.kube/config:~/.kube/linode_config
+LINODE_CLUSTER=$(cat ~/.kube/linode_config | awk '/current-context:/ {print $2}')
 
-kubectl config get-contexts
+cat ~/.kube/linode_config > ~/.kube/config;
+
+kubectl config use-context $LINODE_CLUSTER

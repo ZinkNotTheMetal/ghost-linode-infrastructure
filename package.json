@@ -17,7 +17,6 @@
     "publish:infrastructure:k8s:ingress": ". ./.infrastructure/tf/linode/scripts/shell/deploy-k8s-ingress.sh",
     "publish:infrastructure:k8s:external-dns": ". ./.infrastructure/tf/linode/scripts/shell/deploy-k8s-external-dns.sh",
     "publish:infrastructure:k8s:certificate-manager": ". ./.infrastructure/tf/linode/scripts/shell/deploy-k8s-cert-manager.sh",
-    "deploy:hexo": ". ./blog/deploy.sh",
     "remove:infrastructure": "npm-run-all remove:infrastructure:*",
     "remove:infrastructure:init": "terraform -chdir=.infrastructure/tf/linode/src init",
     "remove:infrastructure:destroy": "terraform -chdir=.infrastructure/tf/linode/src destroy -var-file=config/.linode/pat.credentials -var-file=config/pd.tfvars",
