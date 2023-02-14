@@ -21,6 +21,7 @@
     "remove:infrastructure": "npm-run-all remove:infrastructure:*",
     "remove:infrastructure:init": "terraform -chdir=.infrastructure/tf/linode/src init",
     "remove:infrastructure:destroy": "terraform -chdir=.infrastructure/tf/linode/src destroy -var-file=config/.linode/pat.credentials -var-file=config/pd.tfvars",
+    "remove:infrastructure:nodebalancer": ". ./.infrastructure/tf/linode/scripts/shell/clean-up/delete-nodebalancer.sh $(terraform -chdir=.infrastructure/tf/linode/src output -raw pat_token)",
     "dev:terraform:fmt": "terraform -chdir=.infrastructure/tf/linode fmt --recursive"
   },
   "repository": {
