@@ -1,0 +1,19 @@
+---
+- name: Upgrade the system
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+# 1. Check whether ghost is already installed
+#  - if it is skip run_ghost_setup
+#   https://github.com/bery/ansible-ghost/blob/master/tasks/main.yml
+# 2. Get John to show me ansible secrets...
+
+- import_tasks: user_setup.yml
+
+- import_tasks: install_apt_packages.yml
+
+- import_tasks: install_npm_clis.yml
+
+- import_tasks: run_ghost_setup.yml

@@ -1,0 +1,6 @@
+---
+- name: "Install APT Ubuntu packages"
+  apt:
+    update_cache: true
+    name: ['build-essential', 'curl', 'mariadb-server', 'nginx', 'nodejs', 'npm', 'git', 'python3-mysqldb']
+    state: latest

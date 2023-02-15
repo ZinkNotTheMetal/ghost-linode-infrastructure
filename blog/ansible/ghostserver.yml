@@ -1,0 +1,4 @@
+---
+- hosts: ghostserver
+  roles:
+    - role: ghostserver

@@ -1,5 +1,10 @@
 variable "pat_token" {
-  description = "Linode API Personal Access Token"
+  description = "Linode API Personal Access Token, located in ./linode/password.credentials"
+  type        = string
+}
+
+variable "linux_root_password" {
+  description = "Linux image root password, located in ./linode/password.credentials"
   type        = string
 }
 
@@ -8,12 +13,4 @@ variable "default_region" {
   type        = string
 }
 
-variable "k8s_node_sku" {
-  description = "The linode SKU for the Kubernetes pool machines"
-  type = string
-}
-
-variable "k8s_node_count" {
-  description = "The amount of pool machines to create in linode"
-  type = number
-}
+variable "environment" {}

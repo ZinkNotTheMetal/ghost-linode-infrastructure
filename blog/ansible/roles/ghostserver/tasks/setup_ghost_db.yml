@@ -1,0 +1,14 @@
+---
+- name: Install ghost - create ghost database
+  mysql_db:
+    name: "{{ ghost_db_name }}"
+    state: present
+
+- name: Install ghost - create ghost db user
+  mysql_user:
+    name: "{{ ghost_db_user }}"
+    password: "{{ ghost_db_password }}"
+    host: "{{ ghost_db_host }}"
+    login_host: "{{ ghost_db_host }}"
+    priv: "{{ ghost_db_name }}.*:ALL"
+    state: present

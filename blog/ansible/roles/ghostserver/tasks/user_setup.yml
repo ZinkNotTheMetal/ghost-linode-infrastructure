@@ -1,0 +1,17 @@
+---
+- name: Add Ghost group
+  become: true
+  group:
+    name: "{{ ghost_user_group }}"
+    system: true
+    state: present
+
+- name: Add Ghost user
+  become: true
+  user:
+    name: "{{ ghost_user_name }}"
+    group: "{{ ghost_user_group }}"
+    createhome: true
+    shell: /bin/false
+    system: true
+    state: present
