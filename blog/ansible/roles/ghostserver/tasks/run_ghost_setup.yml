@@ -6,23 +6,16 @@
     state: directory
     mode: "0777"
     owner: ghost
-    recurse: yes
-
-- name: Check previous installation
-  stat:
-    path: "{{ ghost_install_dir }}/current/index.js"
-  register: ghost_is_installed
-
-- import_tasks: setup_ghost_db.yml
+    recurse: true
 
 - name: Install ghost using ghost-cli
-  shell: "ghost install --url={{ ghost_url }} --db={{ ghost_db }} --dbhost={{ ghost_db_host }} --dbuser={{ ghost_db_user }} --dbpass={{ ghost_db_password }} --dbname={{ ghost_db_name }} --mail={{ ghost_smtp }} --mailservice={{ ghost_smtp_service }} --mailuser={{ ghost_smtp_user }} --mailpass={{ ghost_smtp_password }} --mailport={{ ghost_smtp_port }} --sslemail={{ ghost_letsencrypt_user }} --no-setup-ssl --no-prompt --start"
+  become: true
+  become_user: "{{ ghost_user_name }}"
+  shell: "ghost install --url={{ ghost_url }} --db={{ ghost_db }} --dbhost={{ ghost_db_host }} --dbuser={{ ghost_db_user }} --dbpass={{ ghost_db_password }} --dbname={{ ghost_db_name }} --sslemail={{ ghost_letsencrypt_user }} --no-setup-ssl --no-prompt --start"
   args:
     chdir: "{{ ghost_install_dir }}"
-  when: "not ghost_is_installed"
 
 - name: Install SSL for ghost using let's encrypt
   shell: "ghost config url {{ ghost_project_url_secure }} && ghost setup ssl --sslemail={{ ghost_letsencrypt_user }} --no-prompt"
   args:
     chdir: "{{ ghost_install_dir }}"
-  when: "not ghost_is_installed"

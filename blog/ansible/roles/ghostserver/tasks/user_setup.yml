@@ -6,12 +6,20 @@
     system: true
     state: present
 
+- name: Allow 'ghost' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%ghost'
+    line: '%ghost ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
 - name: Add Ghost user
   become: true
   user:
     name: "{{ ghost_user_name }}"
     group: "{{ ghost_user_group }}"
     createhome: true
-    shell: /bin/false
+    shell: /bin/bash
     system: true
     state: present

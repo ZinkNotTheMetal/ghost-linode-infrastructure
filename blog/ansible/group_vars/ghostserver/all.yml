@@ -1,0 +1,25 @@
+---
+# User & permissions
+ghost_user_group: ghost
+ghost_user_name: ghost
+
+# Database settings
+ghost_db: mysql
+ghost_db_host: localhost
+ghost_db_name: "{{ vault_ghost_db_name }}"
+ghost_db_user: "{{ vault_ghost_db_user }}"
+ghost_db_password: "{{ vault_ghost_db_pass }}"
+
+# Ghost settings
+ghost_install_dir: "/var/www/ghost"
+ghost_url: "https://{{ vault_ghost_url }}"
+
+# SMTP settings
+ghost_smtp_from_address: noreply@thesmartestcondo.com
+ghost_smtp: SMTP
+ghost_smtp_user: "{{ vault_ghost_smtp_user }}"
+ghost_smtp_password: "{{ vault_ghost_smtp_password }}"
+ghost_smtp_service: Mailgun
+ghost_smtp_port: 2525
+
+ghost_letsencrypt_user: "{{ vault_ghost_letsencrypt_user }}"

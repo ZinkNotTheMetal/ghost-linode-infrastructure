@@ -1,6 +1,20 @@
 ---
+- name: Install latest nodejs
+  become: true
+  shell: "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash"
+
 - name: "Install APT Ubuntu packages"
   apt:
     update_cache: true
-    name: ['build-essential', 'curl', 'mariadb-server', 'nginx', 'nodejs', 'npm', 'git', 'python3-mysqldb']
+    name:
+      [
+        "build-essential",
+        "curl",
+        "mysql-server",
+        "mysql-client",
+        "nginx",
+        "nodejs",
+        "git",
+        "python3-mysqldb",
+      ]
     state: latest

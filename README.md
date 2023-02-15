@@ -14,4 +14,14 @@
 - Understanding of Terraform
 - Purchasing a domain through a Domain Registrar (i.e. - GoDaddy)
 
+### Ansible
+
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub LOGIN_DESIRED_USER_NAME@IP_ADDRESS_OF_THE_SERVER
+```
+
+```bash
+ansible-playbook -K -i production --vault-password-file ~/.ansible/password site.yml
+```
+
 ## Blogging platform

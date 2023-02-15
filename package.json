@@ -11,6 +11,7 @@
     "publish:infrastructure:init": "terraform -chdir=.infrastructure/tf/linode/src init",
     "publish:infrastructure:plan": "terraform -chdir=.infrastructure/tf/linode/src plan -var-file=config/.linode/password.credentials -var-file=config/pd.tfvars -out=tfplan",
     "publish:infrastructure:apply": "terraform -chdir=.infrastructure/tf/linode/src apply --auto-approve tfplan",
+    "configure:ghost": "ansible-playbook -K -i production --vault-password-file ~/.ansible/password site.yml",
     "remove:infrastructure": "npm-run-all remove:infrastructure:*",
     "remove:infrastructure:init": "terraform -chdir=.infrastructure/tf/linode/src init",
     "remove:infrastructure:destroy": "terraform -chdir=.infrastructure/tf/linode/src destroy -var-file=config/.linode/password.credentials -var-file=config/pd.tfvars",
