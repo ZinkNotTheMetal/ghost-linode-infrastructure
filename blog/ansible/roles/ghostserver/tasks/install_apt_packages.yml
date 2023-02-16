@@ -12,9 +12,9 @@
         "curl",
         "mysql-server",
         "mysql-client",
-        "nginx",
         "nodejs",
         "git",
+        "nginx",
         "python3-mysqldb",
       ]
     state: latest

@@ -1,7 +1,16 @@
 ---
+- name: ALTER root password per command in linode
+  become: true
+  mysql_query:
+    login_db: "{{ ghost_db_name }}"
+    query: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '{{ ghost_db_password }}';
+  ignore_errors: true
+
 - name: Create MySQL ghost database
   mysql_db:
     name: "{{ ghost_db_name }}"
+    login_user: root
+    login_password: "{{ ghost_db_password }}"
     state: present
 
 - name: Create MySQL users for ghost
@@ -12,3 +21,5 @@
     login_host: "{{ ghost_db_host }}"
     priv: "{{ ghost_db_name }}.*:ALL"
     state: present
+    login_user: root
+    login_password: "{{ ghost_db_password }}"

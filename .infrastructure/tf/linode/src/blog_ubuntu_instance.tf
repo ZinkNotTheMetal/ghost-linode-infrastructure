@@ -15,9 +15,23 @@ resource "linode_instance" "ghost_instance" {
   swap_size       = 256
 }
 
-resource "linode_domain_record" "foobar" {
+resource "linode_domain_record" "tsc" {
     domain_id   = linode_domain.thesmartestcondo_domain.id
     name        = "www"
-    record_type = "AAAA"
+    record_type = "A"
+    target      = linode_instance.ghost_instance.ip_address
+}
+
+resource "linode_domain_record" "tsc_no_www" {
+    domain_id   = linode_domain.thesmartestcondo_domain.id
+    name        = local.thesmartestcondo_domain
+    record_type = "A"
+    target      = linode_instance.ghost_instance.ip_address
+}
+
+resource "linode_domain_record" "tsc_admin" {
+    domain_id   = linode_domain.thesmartestcondo_domain.id
+    name        = "admin.${local.thesmartestcondo_domain}"
+    record_type = "A"
     target      = linode_instance.ghost_instance.ip_address
 }

@@ -11,11 +11,23 @@
 - name: Install ghost using ghost-cli
   become: true
   become_user: "{{ ghost_user_name }}"
-  shell: "ghost install --url={{ ghost_url }} --db={{ ghost_db }} --dbhost={{ ghost_db_host }} --dbuser={{ ghost_db_user }} --dbpass={{ ghost_db_password }} --dbname={{ ghost_db_name }} --sslemail={{ ghost_letsencrypt_user }} --no-setup-ssl --no-prompt --start"
+  shell: "ghost install --url={{ ghost_url }} --admin-url={{ ghost_admin_url }} --db={{ ghost_db }} --dbhost={{ ghost_db_host }} --dbuser={{ ghost_db_user }} --dbpass={{ ghost_db_password }} --dbname={{ ghost_db_name }} --sslemail={{ ghost_letsencrypt_user }} --no-prompt --start"
   args:
     chdir: "{{ ghost_install_dir }}"
 
-- name: Install SSL for ghost using let's encrypt
-  shell: "ghost config url {{ ghost_project_url_secure }} && ghost setup ssl --sslemail={{ ghost_letsencrypt_user }} --no-prompt"
+# https://www.digitalocean.com/community/questions/502-bad-gateway-error-for-ghost-after-setting-up-server-block-for-static-site-and-restarting-nginx
+- name: Reset permissions to ensure ghost owns all folders / files
+  become: true
+  file:
+    path: "{{ ghost_install_dir }}"
+    state: directory
+    mode: "0777"
+    owner: ghost
+    recurse: true
+
+- name: Restart ghost
+  become: true
+  become_user: "{{ ghost_user_name }}"
+  shell: "ghost restart"
   args:
     chdir: "{{ ghost_install_dir }}"

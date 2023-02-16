@@ -5,7 +5,7 @@ ghost_user_name: ghost
 
 # Database settings
 ghost_db: mysql
-ghost_db_host: localhost
+ghost_db_host: "127.0.0.1"
 ghost_db_name: "{{ vault_ghost_db_name }}"
 ghost_db_user: "{{ vault_ghost_db_user }}"
 ghost_db_password: "{{ vault_ghost_db_pass }}"
@@ -13,6 +13,7 @@ ghost_db_password: "{{ vault_ghost_db_pass }}"
 # Ghost settings
 ghost_install_dir: "/var/www/ghost"
 ghost_url: "https://{{ vault_ghost_url }}"
+ghost_admin_url: "https://admin.{{ vault_ghost_url }}"
 
 # SMTP settings
 ghost_smtp_from_address: noreply@thesmartestcondo.com

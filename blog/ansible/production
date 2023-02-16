@@ -1,2 +1,2 @@
 [ghostserver]
-139.144.253.123 ansible_user=root ansible_port=22
+143.42.138.38 ansible_user=root ansible_port=22
